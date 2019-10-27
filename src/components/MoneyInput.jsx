@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 
-class NumericInput extends Component {
+class MoneyInput extends Component {
 
   constructor(props) {
     super(props)
@@ -9,8 +9,10 @@ class NumericInput extends Component {
     }
   }
 
+  decimalRegex = /^\d*\.?\d*$/
+
   handleChange = (e) => {
-    if (e.target.validity.valid) {
+    if (this.decimalRegex.test(e.target.value)) {
       this.setState({
         numericValue: e.target.value
       })
@@ -18,8 +20,8 @@ class NumericInput extends Component {
   }
 
   render = () => (
-    <input type="number" value={this.state.numericValue} onChange={this.handleChange} />
+    <input type="text" value={this.state.numericValue} onInput={this.handleChange} />
   )
 }
 
-export default NumericInput
+export default MoneyInput
